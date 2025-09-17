@@ -6,6 +6,18 @@ app.use(express.json());
 
 let db;
 async function connectToDB() {
+  /*
+   * Keep in mind that codespace removes docker / mongodb on restart
+   * Need to re-install mongodb
+   * use full-stack-react-db
+   * run db.articles.insertMany([
+   * {name : 'learn-node', upvotes: 0, comments :[]},
+   * {name : 'learn-react', upvotes: 0, comments :[]},
+   * {name : 'mongodb', upvotes: 0, comments :[]},
+   * ])
+   */
+
+
   const uri = "mongodb://127.0.0.1:27017";
 
   const client = new MongoClient(uri, {

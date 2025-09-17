@@ -1,11 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import axios from "axios";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ArticleListPage from "./pages/ArticlesListPage";
-import ArticlePage from "./pages/ArticlePage";
+import ArticlePage, { loader as articleLoader } from "./pages/ArticlePage";
 import Layout from "./Layout";
 import NotFoundPage from "./pages/NotFoundPage";
+
 const routes = [
   {
     path: "/",
@@ -27,6 +29,7 @@ const routes = [
       {
         path: "/articles/:name",
         element: <ArticlePage />,
+        loader: articleLoader,
       },
     ],
   },
