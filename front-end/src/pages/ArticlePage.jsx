@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, useLoaderData } from "react-router-dom";
 import articles from "../article-content";
 import axios from "axios";
-import CommentsList from "../../CommentsList";
+import CommentsList from "../CommentsList";
 import AddCommentForm from "../AddCommentForm";
 
 export default function ArticlePage() {
