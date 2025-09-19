@@ -9,14 +9,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-let credentials;
-if (process.env.NODE_ENV === "production") {
-  credentials = JSON.parse(
-    fs.readFileSync("/etc/secrets/credentials.json", "utf8")
-  );
-} else {
-  credentials = JSON.parse(fs.readFileSync("./credentials.json"));
-}
+const credentials = JSON.parse(fs.readFileSync("./credentials.json"));
 
 admin.initializeApp({
   credential: admin.credential.cert(credentials),
@@ -68,10 +61,6 @@ app.get("/api/articles/:name", async (req, res) => {
   const article = await db.collection("articles").findOne({ name });
 
   res.json(article);
-});
-
-app.post("/api/hello", function (req, res) {
-  res.send("Hello " + req.body.name + "from post!");
 });
 
 // middleware to be used by all below endpoints
@@ -131,6 +120,10 @@ app.post("/api/articles/:name/comments", async (req, res) => {
   res.json(updatedArticle);
 });
 
+app.post("/hello", function (req, res) {
+  res.send("Hello " + req.body.name + "from post!");
+});
+
 const PORT = process.env.PORT || 8000;
 
 async function start() {
@@ -141,3 +134,11 @@ async function start() {
   });
 }
 start();
+
+
+
+run db.articles.insertMany([
+    {name : 'learn-node', upvotes: 2, upvoteIds: [],comments :[]},
+    {name : 'learn-react', upvotes: 5, upvoteIds: [], comments :[]},
+    {name : 'mongodb', upvotes: 3, upvoteIds: [],comments :[]},
+    ])
