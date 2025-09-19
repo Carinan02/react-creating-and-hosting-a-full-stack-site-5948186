@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import axios from "axios";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
@@ -7,6 +6,8 @@ import ArticleListPage from "./pages/ArticlesListPage";
 import ArticlePage, { loader as articleLoader } from "./pages/ArticlePage";
 import Layout from "./Layout";
 import NotFoundPage from "./pages/NotFoundPage";
+import LoginPage from "./pages/LoginPage";
+import CreateAccountPage from "./pages/CreateAccountPage";
 
 const routes = [
   {
@@ -30,6 +31,14 @@ const routes = [
         path: "/articles/:name",
         element: <ArticlePage />,
         loader: articleLoader,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/create-account",
+        element: <CreateAccountPage />,
       },
     ],
   },
