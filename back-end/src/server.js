@@ -9,7 +9,12 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const credentials = JSON.parse(fs.readFileSync("./credentials.json"));
+const CREDENTIALS_PATH =
+  process.env.NODE_ENV === "production"
+    ? "/etc/secrets/credentials.json"
+    : "./credentials.json";
+
+const credentials = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, "utf8"));
 
 admin.initializeApp({
   credential: admin.credential.cert(credentials),
